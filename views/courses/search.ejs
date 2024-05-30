@@ -1,0 +1,24 @@
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="courses content">
+        <h2>Search results</h2>
+        <% if (courses.length > 0){ %>
+            <% courses.forEach(course => { %>
+                <a class="single" href="/courses/<%= course._id %>">
+                    <h3 class = "courseName"><%= course.courseName %></h3>
+                <p class = "subjectArea"><%= course.subjectArea %></p>
+                <p class = "creditHours">Credits: <%= course.creditHours  %></p>
+                </a>
+            <% }) %> 
+        <% } else { %>
+            <p>No search results found...</p>
+        <% } %>
+    </div>
+          <%- include('../partials/footer.ejs') %>   
+</body>
+           
+</html>

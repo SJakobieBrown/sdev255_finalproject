@@ -1,0 +1,90 @@
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+<body>
+  <%- include("../partials/nav.ejs") %>
+
+  <div class="details content">
+    <h2><%= course.courseName %></h2>
+    <div id = "content">
+      <p>Course ID: <%= course.id %></p>
+      <p>Subject: <%= course.subjectArea %></p>
+      <p>Credits: <%= course.creditHours %></p>
+      <p>Description: <%= course.description %></p>
+    </div>
+    <% if (verified){ %>
+    <form action = "/courses/<%= course._id %>" method = "POST" id = "editForm" class = "editForm" display = "none">
+        <p><label for="courseName">Course: </label>
+        <input type="text" id="courseName" name="courseName" value = <%= course.courseName %> required></p>
+        <p><label for="subjectArea">Subject: </label>
+        <input type="text" id="subjectArea" name="subjectArea" value = <%= course.subjectArea %> required></p>
+        <p><label for="creditHours">Credits: </label>
+        <input type="text" id="creditHours" name="creditHours" value = <%= course.creditHours %> required></p>
+        <p><label for="description">Description: </label>
+        <textarea id="description" name="description" required><%= course.description %></textarea></p>
+        <button>Submit</button>
+    </form>
+    <button id = "editButton">Edit</button>
+    <a class="delete" data-doc="<%= course._id %>">delete course</a>
+    <% } %>
+    <% if (user.role === "student" && !user.shoppingCart.some(e => e._id.equals(course._id)) && !user.courses.some(e => e._id.equals(course._id))) { %>
+      <button class = "addToCart" data-doc = "<%= course._id %>">Add to shopping cart</button>
+      <% } %>
+  </div>
+  <%- include("../partials/footer.ejs") %>
+  <%if (user.role === "student" && !user.shoppingCart.some(e => e._id.equals(course._id)) && !user.courses.some(e => e._id.equals(course._id))){%>
+<script>
+  const cartAdder = document.querySelector('button.addToCart');
+  cartAdder.addEventListener('click', (e) => {
+    const endpoint = `/courses/shoppingCart/${cartAdder.dataset.doc}`;
+    fetch(endpoint, {
+      method: 'POST',
+    })
+    .then(response => response.json())
+    .then(data => window.location.href = data.redirect)
+    .catch(err => console.log(err));
+  });
+</script>
+<% } %>
+<% if (verified){ %>
+<script>
+    const deleter = document.querySelector('a.delete');
+    deleter.addEventListener('click', (e) => {
+      const endpoint = `/courses/${deleter.dataset.doc}`;
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+</script>
+
+
+
+  <script>
+    const contentDiv = document.getElementById("content");
+    const EditFormToggle = document.getElementById("editButton");
+    const editForm = document.getElementById("editForm");
+    editForm.style.display = "none";
+    deleter.style.display = "none";
+
+    var toggleBool = false; //if false display details content, if true display edit content.
+    EditFormToggle.addEventListener("click", function() {
+      toggleBool = !toggleBool;
+      if (toggleBool){
+        editForm.style.display = "block";
+        contentDiv.style.display = "none";
+        EditFormToggle.innerText = "Cancel";
+        deleter.style.display = "block";
+      }else{
+        editForm.style.display = "none";
+        contentDiv.style.display = "block";   
+        EditFormToggle.innerText = "Edit";
+        deleter.style.display = "none";
+      }
+    });
+    </script>
+<%} %>
+</body>
+</html>

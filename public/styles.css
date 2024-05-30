@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+:root {
+  --ivy-green: #006648;
+  --ivy-lightGreen: #0B874B;
+  --ivy-lightGrey: #F5F5F5;
+  --ivy-darkGrey: #D8D8D8;
+}
+        body{
+          max-width: 1200px;
+          margin: 0px auto;
+          padding: 0 20px;
+          font-family: 'Noto Serif', serif;
+          max-width: 1200px;
+          background-color: #FFF;
+        }
+        p, h1, h2, h3, a, ul{
+          margin: 0;
+          padding: 0;
+          text-decoration: none;
+          color: #222;
+        }
+        /* nav & footer styles */
+        .header-nav{
+          width: 100%;
+          left: 0;
+          position: fixed;
+          top: 0;
+          z-index:1;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 60px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #000;
+          text-transform: uppercase;
+          background-color: var(--ivy-green);
+        }
+        .site-title{
+          margin-left:15px;
+        }
+        nav ul{
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-right: 15px;
+        }
+        nav li{
+          list-style-type: none;
+          margin-left: 20px;
+        }
+        nav li a:hover {
+          color: black;
+        }
+        nav h1{
+          color: white;
+          font-size: 3em;
+        }
+        nav p, nav a{
+          color: white;
+          font-weight: 300;         
+        }
+        footer{
+          color: black;
+          text-align: center;
+          margin: 10px auto 20px 20px;
+          padding-bottom: 2px;
+          background-color: var(--ivy-darkGrey);
+        }
+        h2{
+          margin-bottom: 40px;
+          color: var(--ivy-green);
+        }
+        h3{
+          text-transform: capitalize;
+          margin-bottom: 8px;
+        }
+        .content{
+          margin-top: 175px;
+          margin-left: 20px;
+          padding: 10px 10px 10px 10px;
+          background: var(--ivy-lightGrey);
+        }
+        .editForm{
+          margin-left: 20px;
+          padding: 10px 10px 10px 10px
+        }
+
+        .topright {
+          position: absolute;
+          top: 8px;
+          right: 13px;
+          font-size: 18px;
+        }
+
+        .topcenterright {
+          position: absolute;
+          top: 32px;
+          right: 13px;
+          font-size: 18px;
+        }
+        /* index styles */
+    .courses a{
+      display: block;
+      margin: 40px 0;
+      padding-left: 30px;
+      border-left: 6px solid var(--ivy-lightGreen);
+      
+    }
+    .courses a:hover h3{
+      color: var(--ivy-lightGreen);
+    }
+
+    /* details styles */
+    .details{
+      position: relative; 
+      
+         
+    }
+    .delete{
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: 50%;
+      padding: 8px;      
+    }
+    .delete:hover{
+      cursor: pointer;
+      box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+      color: white;
+      background-color: var(--ivy-green)
+    }
+        /* create styles */
+        .create-course form{
+          max-width: 400px;
+          margin: 0 auto;
+        }course
+        .create-course input,
+        .create-course textarea{
+          display: block;
+          width: 100%;
+          margin: 10px 0;
+          padding: 8px;
+        }
+        .create-course label{
+          display: block;
+          margin-top: 24px;
+        }
+        textarea{
+          height: 120px;
+        }
+        .create-course button{
+          margin-top: 20px;
+          background: var(--ivy-green);
+          color: white;
+          padding: 6px;
+          border: 0;
+          font-size: 1.2em;
+          cursor: pointer;
+        }
+        .create-course button:hover {
+          background-color: var(--ivy-lightGreen);
+          color: white;
+        }
+.container{
+  max-width: 440px;
+  padding: 0 20px;
+  margin: 170px auto;
+  box-sizing: border-box;
+}
+.wrapper{
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
+}
+.wrapper .title{
+  height: 90px;
+  background: #006648;
+  border-radius: 5px 5px 0 0;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper form{
+  padding: 30px 25px 25px 25px;
+}
+.wrapper form .row{
+  height: 45px;
+  margin-bottom: 15px;
+  position: relative;
+}
+.wrapper form .row input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 60px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+form .row input:focus{
+  border-color: #006648;
+  box-shadow: inset 0px 0px 2px 2px rgba(26,188,156,0.25);
+}
+form .row input::placeholder{
+  color: #999;
+}
+.wrapper form .row i{
+  position: absolute;
+  width: 47px;
+  height: 100%;
+  color: #fff;
+  font-size: 18px;
+  background: #006648;
+  border: 1px solid #006648;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper form .pass{
+  margin: -8px 0 20px 0;
+}
+.wrapper form .pass a{
+  color: #006648;
+  font-size: 17px;
+  text-decoration: none;
+}
+.wrapper form .pass a:hover{
+  text-decoration: underline;
+}
+.wrapper form .button input{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 0px;
+  background: #006648;
+  border: 1px solid #006648;
+  cursor: pointer;
+}
+form .button input:hover{
+  background: #12876f;
+}
+.wrapper form .signup-link{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 17px;
+}
+.wrapper form .signup-link a{
+  color: #006648;
+  text-decoration: none;
+}
+form .signup-link a:hover{
+  text-decoration: underline;
+}

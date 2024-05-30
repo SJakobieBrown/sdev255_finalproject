@@ -1,0 +1,64 @@
+<nav class = "header-nav">
+    <div class = "site-title">
+        <a href = "/"><h1>Course Champion</h1></a>
+        <p>SDEV255 Group 2 | Final Project</p>
+        <% if (user) { %>
+        <p>Welcome, <%= user.email %></p>
+        <% } %>    
+    </div>
+    <div class = "authLinks">
+    <ul>
+        <% if (user) { %>
+        <li><a href="/auths/logout" class="topright">Log out</a></li>
+        <% } else { %>
+        <li><a href="/auths/login" class="topcenterright">Log in</a></li>
+        <li><a href="/auths/signup" class="topright">Sign up</a></li>
+        <% } %>
+      
+    <li></li>
+    </ul>
+    </div>
+    <ul>
+        <% if (user){ %>
+        <li><a href= "/">Courses</a></li>
+        <%}if (!user){%>
+        <li><a href="/about">About</a></li>
+        <%}if (user && user.role === "teacher") { %>
+        <li><a href="/courses/create">New Course</a></li>
+        <%}if(user){ %>
+        <li><a href = "/courses/myCourses">My Courses</a></li>
+        <%}if (user && user.role === "student") {%>
+        <li><a href = "/courses/shoppingCart">Shopping Cart</a></li>
+        <% } %>
+    </ul>
+    <% if(user) {%>
+    <form id="searchForm" action = "/courses/search" method="GET" >
+        <button id = "searchBtn">Search</button><input id = "searchInput" type = "text">
+    </form>
+    <% } %>
+</nav>
+<script>
+    const searchButton = document.getElementById("searchBtn");
+    const searchInput = document.getElementById("searchInput");
+    const searchForm = document.getElementById("searchForm");
+    searchInput.addEventListener('input', (e)=>{
+        console.log(searchInput.value)
+        if (searchButton.value != ""){
+        searchForm.action = '/courses/search/' +searchInput.value;
+        searchFrom.method = 'POST';
+        }
+        else{
+            searchForm.action = '/courses/search';
+            searchForm.method = 'GET';
+        }
+    })
+    searchInput.addEventListener("keydown", function(event) {
+        if (searchInput.value == ""){
+            return;
+        }
+        else if (event.keyCode === 13) {
+        searchButton.click();
+        }
+    })
+
+</script>

@@ -1,0 +1,46 @@
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="courses content">
+        <h2>Shopping Cart</h2>
+        <% if (courses.length > 0){ let index = 0%>
+            <% courses.forEach(course => { %>
+                <a class="single" href="/courses/<%= course._id %>">
+                    <h3 class = "courseName"><%= course.courseName %></h3>
+                <p class = "subjectArea"><%= course.subjectArea %></p>
+                <p class = "creditHours">Credits: <%= course.creditHours  %></p>
+            </a>
+                <form action = "/courses/myCourses/<%= course._id %>" method = "POST">
+                    <button>Enroll</button>
+                </form>
+                    <button class = "removeBtn" data-doc = "<%= course._id %>">Remove</button>
+                     
+                
+            <% index++;}) %> 
+        <% } else { %>
+            <p>There are no courses to display...</p>
+        <% } %>
+    </div>
+          <%- include('../partials/footer.ejs') %>
+          <% if(courses.length > 0){ %>
+        <script>
+            const removeBtns = document.getElementsByClassName('removeBtn');
+            for (let i = 0; i < removeBtns.length; i++){
+                removeBtns[i].addEventListener('click', (e) => {
+                const endpoint = `/courses/shoppingCart/${removeBtns[i].dataset.doc}`;
+                fetch(endpoint, {
+                    method: 'DELETE',
+                })
+                .then(response => response.json())
+                .then(data => window.location.href = data.redirect)
+                .catch(err => console.log(err));
+                });
+            }
+          </script>
+          <% } %>
+</body>
+           
+</html>

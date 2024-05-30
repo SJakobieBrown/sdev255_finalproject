@@ -1,0 +1,23 @@
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    
+    <%- include('../partials/nav.ejs') %>
+    
+    <div class="create-course content">
+        <h2>Add Course</h2>
+        <form action = "/courses" method = "POST">
+            <label for="courseName">Course name </label>
+            <input type="text" id="courseName" name="courseName" required>
+            <label for="subject area">Subject area:</label>
+            <input type="text" id="subjectArea" name="subjectArea" required>
+            <label for="credit hours">Credit hours:</label>
+            <input type="text" id="creditHours" name="creditHours" required>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea><br>
+            <button>Submit</button>
+        </form>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>
